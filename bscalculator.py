@@ -109,20 +109,20 @@ class BowlingScoreCaliculator :
                     else :
                         # そのままスコアを加算
                         gamescores[frame_cnt]['score'] = prev_score + pins_in_frame
-                else :
-                    # 最終フレーム
-                    # 最終フレームは2投目までにストライクかスペア = 2投の合計がピン最大数以上なら3投可能
-                    # それ以下は2投で終わり
-                    if (throw_cnt == THROW_IN_LAST_FRAME-1 and pins_in_frame < pin_max) :
-                        # ストライクもスペアも達成していないので終わり。
-                        is_frame_end = True
-                    elif (throw_cnt == THROW_IN_LAST_FRAME):
-                        # それ以外で3投したら終了
-                        is_frame_end = True
-                    if is_frame_end :
-                        # 最終フレームが終わったらフレーム内の合計値を単純加算
-                        # TODO なんか自信ない...
-                        gamescores[frame_cnt]['score'] = prev_score + pins_in_frame
+            else :
+                # 最終フレーム
+                # 最終フレームは2投目までにストライクかスペア = 2投の合計がピン最大数以上なら3投可能
+                # それ以下は2投で終わり
+                if (throw_cnt == THROW_IN_LAST_FRAME-1 and pins_in_frame < pin_max) :
+                    # ストライクもスペアも達成していないので終わり。
+                    is_frame_end = True
+                elif (throw_cnt == THROW_IN_LAST_FRAME):
+                    # それ以外で3投したら終了
+                    is_frame_end = True
+                if is_frame_end :
+                    # 最終フレームが終わったらフレーム内の合計値を単純加算
+                    # TODO なんか自信ない...
+                    gamescores[frame_cnt]['score'] = prev_score + pins_in_frame
 
             # フレームが終了した場合、投球カウントクリア、フレームを進める
             if is_frame_end:
